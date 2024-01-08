@@ -37,7 +37,7 @@
 							{
 								echo "<TR>";
 								echo '<TD>'.$tab_parametre[$i]['nom'].'</TD>';
-								echo '<TD>'.'<INPUT TYPE="text" NAME="'.$tab_parametre[$i]['ID_NOM'].'" value="'.$tab_parametre[$i]['valeur_parametre'].'"></INPUT>'.'</TD>';
+								echo '<TD>'.'<INPUT TYPE="text" NAME="Id_parametre_'.$tab_parametre[$i]['Id_parametre'].'" value="'.$tab_parametre[$i]['valeur_parametre'].'"></INPUT>'.'</TD>';
 								echo "</TR>";
 							
 							}

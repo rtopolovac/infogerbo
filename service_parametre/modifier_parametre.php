@@ -21,20 +21,18 @@
     $num_client = htmlspecialchars($_GET["num_client"]);
 	  $num_service = htmlspecialchars($_GET["num_service"]);
 
-    $tab = array(
-      '1' => "chemin 3",
-      '2' => "vh 3",
-      ); // array
-
+    foreach ($_GET as $cle => $valeur){
+      echo $cle.'=>'.$valeur;
+       
+    }
 
     $update = false;
     if (isset($_GET["update"])) $update = htmlspecialchars($_GET["update"]);
     if ($update)
     {
-        $infoger_bdd->SQL_modifier_parametre_service($num_client, $num_service, $tab);
+        // $infoger_bdd->SQL_modifier_parametre_service($Id_parametre, $valeur_parametre);
+        echo 'Enregistrement effectuer';
     }
-
-echo 'Enregistrement effectuer';
         //header('Location: ../service/service_client.php'); // pas d'echo sinon erreur //
 
     exit;

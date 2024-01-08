@@ -90,12 +90,13 @@ echo "Erreur lors de la récupération des paramètres : ";
         }
     }
 
-    public function SQL_modifier_parametre_service($num_client, $num_service, $tab)
+    public function SQL_modifier_parametre_service($Id_parametre, $valeur_parametre)
     {
+        $tab = array(
+            'valeur_parametre' => $valeur_parametre
+            ); // array
         
-        
-
-        parent::modifierDonnees("parametre","Id_client=".$num_client." AND Id_service = ".$num_service, $tab);
+        parent::modifierDonnees("parametre","Id_parametre = ".$Id_parametre, $valeur_parametre);
     }
 
 
@@ -108,7 +109,7 @@ echo "Erreur lors de la récupération des paramètres : ";
 
 public function SQL_lister_parametres($num_client, $num_service)
 {
-return parent::executerRequete("SELECT nom, valeur_parametre, parametre.Id_nom_parametre AS ID_NOM FROM parametre JOIN nom_parametre ON parametre.Id_nom_parametre = nom_parametre.Id_nom_parametre WHERE Id_client=".$num_client." and Id_service=".$num_service.";");
+return parent::executerRequete("SELECT nom, valeur_parametre, Id_parametre FROM parametre JOIN nom_parametre ON parametre.Id_nom_parametre = nom_parametre.Id_nom_parametre WHERE Id_client=".$num_client." and Id_service=".$num_service.";");
 }
 
 
