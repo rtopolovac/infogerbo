@@ -12,6 +12,7 @@
 					
 		// Connexion à la BDD
 		$infoger_bdd->Connexion();
+echo 'Bonjour';
 	?>
    <button><a href="nouveau_client.html">&#10010;</a></button>
     <h1>Liste des Clients</h1>
