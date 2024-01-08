@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="parametre_service.css">
+    <title>Paramètre du service Y du client X</title>
+</head>
+<body>
+<?php						
+		require '../library/bdd_infoger.php';
+		$infoger_bdd = new BDD_infoger();
+					
+		// Connexion à la BDD
+		$infoger_bdd->Connexion();
+	?>
+    <h1>Paramètre du service Y du client X</h1>
+    <div class="list">
+        <div class="list_service">
+			<form action="modifier_parametre.php" method="get">
+				<?php
+					if ($infoger_bdd->isConnected()){
+						$nom_entreprise = htmlspecialchars($_GET["nom_entreprise"]);
+						$num_client = htmlspecialchars($_GET["num_client"]);
+						$num_service = htmlspecialchars($_GET["num_service"]);
+						// Requêtes SQL
+						$tab_parametre = $infoger_bdd->SQL_lister_parametres($num_client, $num_service);
+
+						if (count($tab_parametre) > 0)
+						{
+							echo '<TABLE  CELLSPACING="0" border="0">';
+							echo "<TR><TD>Paramètre prédéfini</TD><TD>Paramètre client</TD>";
+							echo "</TR>";
+							
+							// Boucle d'affichage du tableau des clients	
+							for ($i=0;$i<count($tab_parametre);$i++)
+							{
+								echo "<TR>";
+								echo '<TD>'.$tab_parametre[$i]['nom'].'</TD>';
+								echo '<TD>'.'<INPUT TYPE="text" NAME="'.$tab_parametre[$i]['ID_NOM'].'" value="'.$tab_parametre[$i]['valeur_parametre'].'"></INPUT>'.'</TD>';
+								echo "</TR>";
+							
+							}
+							echo "</TABLE>";
+						}
+					}
+				?>
+				<input type="hidden" value='<?php echo $num_client?>' name='num_client'>
+				<input type="hidden" value='<?php echo $num_service?>' name='num_service'>
+				<input type="hidden" value='<?php echo $nom_entreprise?>' name='nom_entreprise'>
+				<input type="hidden" value='true' name='update'>
+				<input type="submit" value="Enregistrer">
+			</form>
+        </div>
+    </div>
+</body>
+</html>

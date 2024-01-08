@@ -1,0 +1,53 @@
+* {
+  box-sizing: border-box;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  padding: 0;
+  margin: 0;
+}
+
+h1 {
+  text-align: center;
+  font-size: 80px;
+}
+
+.info_client {
+  padding-top: 50px;
+}
+
+.info_client {
+  padding-left: 200px;
+}
+
+.info_client ul li {
+  list-style-type: none;
+  font-size: 30px;
+}
+
+input[type=submit] {
+  position: fixed;
+  right: 0;
+  border: none;
+  border-radius: 10px;
+  margin-right: 40px;
+  padding: 10px;
+}
+
+input[type=submit]:hover {
+  background-color: black;
+  color: white;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.informations img{
+  width:50px;
+  height:50px;
+}
+
+table{
+  margin: 150px 0px 0px 150px 
+}
+
+td{
+  padding-bottom: 30px;
+}
