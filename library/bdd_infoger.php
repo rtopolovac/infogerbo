@@ -96,7 +96,7 @@ echo "Erreur lors de la récupération des paramètres : ";
             'valeur_parametre' => $valeur_parametre
             ); // array
         
-        parent::modifierDonnees("parametre","Id_parametre = ".$Id_parametre, $valeur_parametre);
+        parent::modifierDonnees("parametre","Id_parametre = ".$Id_parametre, $tab);
     }
 
 

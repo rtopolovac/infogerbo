@@ -22,7 +22,15 @@
 	  $num_service = htmlspecialchars($_GET["num_service"]);
 
     foreach ($_GET as $cle => $valeur){
-      echo $cle.'=>'.$valeur;
+      echo $cle.'=>'.$valeur.'<br>';
+
+      $mot_rechercher = 'Id_parametre_';
+
+      if (stripos($cle, $mot_rechercher) !== false){
+        $rest =substr($cle, 13, 14);
+        echo $rest.'<br>';
+        echo $valeur.'<br>';
+      }
        
     }
 
@@ -30,7 +38,7 @@
     if (isset($_GET["update"])) $update = htmlspecialchars($_GET["update"]);
     if ($update)
     {
-        // $infoger_bdd->SQL_modifier_parametre_service($Id_parametre, $valeur_parametre);
+        $infoger_bdd->SQL_modifier_parametre_service($rest, $valeur);
         echo 'Enregistrement effectuer';
     }
         //header('Location: ../service/service_client.php'); // pas d'echo sinon erreur //
@@ -39,11 +47,6 @@
   }
 
   // rajouter une redirection vers une page d'erreur
-
-  echo $num_client;
-  echo $num_service;
-  echo $nom_entreprise;
-
 
 
 ?>
