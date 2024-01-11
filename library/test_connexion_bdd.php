@@ -14,7 +14,7 @@
 	// Connexion à la BDD
 	$infoger = new BDDManager();
 
-	$infoger->ConnexionBDD("localhost", "infoger_user", "123456+azerty", "infoger");
+	$infoger->ConnexionBDD("localhost", "infoger_user1", "123456+azerty", "infoger");
 	
 	if ($infoger->isConnected()) 
 		echo "La connexion à la BBD à réuissi :)";

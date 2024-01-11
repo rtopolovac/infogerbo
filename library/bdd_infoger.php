@@ -6,7 +6,7 @@ require 'bdd_manager.php';
 class BDD_infoger extends BDDManager{
     public function Connexion()
     {
-        parent::ConnexionBDD("localhost", "infoger_user", "123456+azerty", "infoger");
+        parent::ConnexionBDD("localhost", "infoger_user1", "123456+azerty", "infoger");
     }
     
     //Lister les clients//
