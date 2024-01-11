@@ -38,7 +38,7 @@
 							echo "<TR>";
 							echo '<TD>'.$tabService[$i]['nom_service'].'</TD>';
                             echo '<TD><DIV CLASS="maDiv"></DIV></TD>';
-							echo '<TD><BUTTON CLASS="monBouton" ONCLICK="changerTexte()">Clique</BUTTON></TD>';
+							echo '<TD><BUTTON CLASS="monBouton" ONCLICK="changerTexte('.$i.')">Clique</BUTTON></TD>';
 							echo '<TD><A HREF="../service_parametre/parametre_service.php?num_client='.$num_client.'&num_service='.$tabService[$i]['n_service'].'&nom_entreprise='.$nom_entreprise.'"><IMG SRC="paramètre.png" alt=""></A></TD>';
 							echo "</TR>";
 						}
@@ -69,14 +69,13 @@
 	// }
 
 	// Fonction pour changer le texte du bouton
-function changerTexte() {
+function changerTexte(indice) {
     var boutons = document.getElementsByClassName('monBouton');
     var maDivs = document.querySelectorAll('.maDiv');
 
     // Parcourir tous les boutons
-    for (var i = 0; i < boutons.length; i++) {
-        var bouton = boutons[i];
-        var maDiv = maDivs[i];
+        var bouton = boutons[indice];
+        var maDiv = maDivs[indice];
 
         // Vérifier le texte actuel du bouton
         var texteActuel = bouton.innerText;
@@ -89,7 +88,6 @@ function changerTexte() {
             bouton.innerText = 'Désactiver';
             maDiv.style.backgroundColor = 'red';
         }
-    }
 }
 
 	</script>
