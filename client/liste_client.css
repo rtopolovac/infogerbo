@@ -10,11 +10,12 @@ html {
 body {
   margin: 0;
   padding: 0;
+  background-color: pink;
 }
 
 h1 {
   text-align: center;
-  font-size: 80px;
+  font-size: 50px;
   margin-top: 70px;
 }
 
@@ -36,10 +37,10 @@ button:hover {
 
 button a {
   text-decoration: none;
-  color:black;
+  color: black;
 }
 
-button a:hover{
+button a:hover {
   color: white;
 }
 
@@ -57,7 +58,7 @@ button a:hover{
 
 .liste_client ul li a {
   text-decoration: none;
-  color: grey;
+  color: black;
   font-size: 30px;
   transition: 0.3s;
 }
@@ -84,16 +85,24 @@ button a:hover{
   flex-direction: row;
 }
 
-tr{
-  font-size:20px;
+tr {
+  font-size: 20px;
 }
 
 td {
   text-decoration: none;
-  color: grey;
+  color: black;
+  padding-right: 30px;
 }
 
-
-td{
-  padding-right: 30px;
+td a {
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  border: none;
+  border-radius: 5px;
+  background-color: #3498db;
+  color: #fff;
+  text-decoration: none;
+  transition: background-color 0.3s;
 }

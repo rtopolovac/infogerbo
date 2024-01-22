@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8">
     <title>Backo office INFOGER - Liste clients</title>
-	<link rel="stylesheet" href="liste_client.css"> 
+	<link rel="stylesheet" href="liste_client.css">
 </head>
    <body>
    <?php						
@@ -35,8 +35,8 @@
 							echo '<TD>'.$tabClient[$i]['nom_entreprise'].'</TD>';
 							echo '<TD>'.$tabClient[$i]['adresse_entreprise'].'</TD>';
 							echo '<TD>'.$tabClient[$i]['nom_referent'].'</TD>';
-							echo '<TD>'.'<A href="client_x.php?num_client='.$tabClient[$i]['Id_client'].'">'.'<IMG src="logo info.png" alt="">'.'</A>'.'</TD>';
-							echo '<TD>'.'<A href="../service/service_client.php?num_client='.$tabClient[$i]['Id_client'].'&nom_entreprise='.$tabClient[$i]['nom_entreprise'].'">'.'<IMG src="service logo.jpg" alt="">'.'</A>'.'</TD>';
+							echo '<TD>'.'<A href="client_x.php?num_client='.$tabClient[$i]['Id_client'].'">'.'Informations'.'</A>'.'</TD>';
+							echo '<TD>'.'<A href="../service/service_client.php?num_client='.$tabClient[$i]['Id_client'].'&nom_entreprise='.$tabClient[$i]['nom_entreprise'].'">'.'Services'.'</A>'.'</TD>';
 							echo "</TR>";
 						
 						}
