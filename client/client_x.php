@@ -15,7 +15,8 @@
         // Connexion à la BDD
         $infoger_bdd->Connexion();
     ?>
-    <a href="lister_client.php">&#8962;</a>
+    <a href="lister_client.php">&#11013; Retour a la liste des clients</a>
+	<a href="tableau_bord.html">&#11013; Retour au tableau de bord</a>
     <h1>Informations Client</h1>
     <div class="informations">
         <form action="modifier_client.php">

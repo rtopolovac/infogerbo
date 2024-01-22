@@ -10,7 +10,6 @@ html {
 body {
   margin: 0;
   padding: 0;
-  background-color: pink;
 }
 
 h1 {
@@ -28,20 +27,21 @@ button {
   border-radius: 30px;
   height: 40px;
   width: 40px;
+  background-color: #3498db;
 }
 
 button:hover {
-  background-color: black;
+  background-color: white;
   cursor: pointer;
 }
 
 button a {
   text-decoration: none;
-  color: black;
+  color: white;
 }
 
 button a:hover {
-  color: white;
+  color: black;
 }
 
 .liste_client {
@@ -92,11 +92,29 @@ tr {
 td {
   text-decoration: none;
   color: black;
-  padding-right: 30px;
+  padding: 20px 30px 20px 0px;;
 }
 
 td a {
   padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  border: none;
+  border-radius: 5px;
+  background-color: #3498db;
+  color: #fff;
+  text-decoration: none;
+  transition: background-color 0.3s;
+}
+
+
+td a:hover{
+  color:black;
+  background-color: white;
+}
+
+.button_return{
+padding: 10px 20px;
   font-size: 16px;
   cursor: pointer;
   border: none;

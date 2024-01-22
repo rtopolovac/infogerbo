@@ -64,3 +64,15 @@
     background: white;
     transform: translate(-50%, -50%)
   }
+
+  .button_return{
+    padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+      border: none;
+      border-radius: 5px;
+      background-color: #3498db;
+      color: #fff;
+      text-decoration: none;
+      transition: background-color 0.3s;
+    }

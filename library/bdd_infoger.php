@@ -104,12 +104,17 @@ echo "Erreur lors de la récupération des paramètres : ";
     //Lister les services//
     public function SQL_lister_services($num_client)
     {
-    return parent::executerRequete("SELECT nom_service, service.Id_service AS n_service FROM service JOIN status ON service.Id_service = status.Id_service WHERE Id_client=".$num_client.";");
+    return parent::executerRequete("SELECT nom_service, service.Id_service AS n_service, disponible FROM service JOIN status ON service.Id_service = status.Id_service WHERE Id_client=".$num_client.";");
 }
 
 public function SQL_lister_parametres($num_client, $num_service)
 {
 return parent::executerRequete("SELECT nom, valeur_parametre, Id_parametre FROM parametre JOIN nom_parametre ON parametre.Id_nom_parametre = nom_parametre.Id_nom_parametre WHERE Id_client=".$num_client." and Id_service=".$num_service.";");
+}
+
+public function SQL_lister_status($num_client)
+{
+return parent::executerRequete("SELECT nom, nom_status.Id_nom_status AS n_status FROM nom_status JOIN status ON nom_status.Id_nom_status = status.Id_nom_status WHERE Id_client=".$num_client.";");
 }
 
 

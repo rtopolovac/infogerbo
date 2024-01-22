@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="service_client.css">
-    <title>Liste des services Y du client X</title>
+    <title>Liste des services du client </title>
 </head>
 <body>
 	<?php						
@@ -17,7 +17,8 @@
 		$num_client = htmlspecialchars($_GET["num_client"]);
 		$nom_entreprise = htmlspecialchars($_GET["nom_entreprise"]);
 	?>
-    <button class="plus">&#10010;</button>
+    <a class="button_return" href="../client/lister_client.php">&#11013; Retour a la liste des clients</a>
+	<a class="button_return" href="../client/tableau_bord.html">&#11013; Retour au tableau de bord</a>
     <h1>Liste des services du client <?php echo $nom_entreprise?></h1>
 	<div class="flex_list">
         <div class="liste_client">
@@ -31,6 +32,8 @@
 						echo '<TABLE CELLSPACING="0" border="0">';
 						echo "<TR><TD>Nom service</TD><TD>Etat</TD>";
 						echo "</TR>";
+
+						$tabStatus = $infoger_bdd->SQL_lister_status($num_client);
 						
 						// Boucle d'affichage du tableau des clients	
 						for ($i=0;$i<count($tabService);$i++)
@@ -38,8 +41,8 @@
 							echo "<TR>";
 							echo '<TD>'.$tabService[$i]['nom_service'].'</TD>';
                             echo '<TD><DIV CLASS="maDiv"></DIV></TD>';
-							echo '<TD><BUTTON CLASS="monBouton" ONCLICK="changerTexte('.$i.')">Clique</BUTTON></TD>';
-							echo '<TD><A HREF="../service_parametre/parametre_service.php?num_client='.$num_client.'&num_service='.$tabService[$i]['n_service'].'&nom_entreprise='.$nom_entreprise.'"><IMG SRC="paramètre.png" alt=""></A></TD>';
+							echo '<TD><BUTTON CLASS="monBouton" ONCLICK="changerTexte('.$i.')">Cliquer</BUTTON></TD>';
+							echo '<TD><A HREF="../service_parametre/parametre_service.php?num_client='.$num_client.'&num_service='.$tabService[$i]['n_service'].'&nom_entreprise='.$nom_entreprise.'&nom_service='.$tabService[$i]['nom_service'].'"><IMG SRC="paramètre.png" alt=""></A></TD>';
 							echo "</TR>";
 						}
 						echo "</TABLE>";

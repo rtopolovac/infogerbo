@@ -14,7 +14,8 @@
 		$infoger_bdd->Connexion();
 	?>
    <button><a href="nouveau_client.html">&#10010;</a></button>
-    <h1>Liste des Clients</h1>
+   <a class="button_return" href="tableau_bord.html"> &#11013; Retour au tableau de bord</a>
+   <h1>Liste des Clients</h1>
     <div class="flex_list">
         <div class="liste_client">
 				<?php

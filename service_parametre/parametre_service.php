@@ -13,16 +13,20 @@
 					
 		// Connexion à la BDD
 		$infoger_bdd->Connexion();
+		$nom_entreprise = htmlspecialchars($_GET["nom_entreprise"]);
+		$num_client = htmlspecialchars($_GET["num_client"]);
+		$num_service = htmlspecialchars($_GET["num_service"]);
+		$nom_service = htmlspecialchars($_GET["nom_service"]);
+
 	?>
-    <h1>Paramètre du service Y du client X</h1>
+	<a class="button_return" href="../client/lister_client.php">&#11013; Retour a la liste des clients</a>
+	<a class="button_return" href="../client/tableau_bord.html">&#11013; Retour au tableau de bord</a>
+	<?php echo "<H1>Paramètre du service ".$nom_service." du client ".$nom_entreprise."</H1>";?>
     <div class="list">
         <div class="list_service">
 			<form action="modifier_parametre.php" method="get">
 				<?php
 					if ($infoger_bdd->isConnected()){
-						$nom_entreprise = htmlspecialchars($_GET["nom_entreprise"]);
-						$num_client = htmlspecialchars($_GET["num_client"]);
-						$num_service = htmlspecialchars($_GET["num_service"]);
 						// Requêtes SQL
 						$tab_parametre = $infoger_bdd->SQL_lister_parametres($num_client, $num_service);
 
