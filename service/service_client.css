@@ -10,6 +10,8 @@ html {
 body {
   margin: 0;
   padding: 0;
+  background: linear-gradient(#fff, #9198e5);
+  height: 100vh;
 }
 
 h1 {
@@ -20,7 +22,6 @@ h1 {
 
 .plus {
   position: relative;
-  /* right: 0; */
   margin-right: 40px;
   border: none;
   font-size: 15px;
@@ -49,7 +50,7 @@ h1 {
 
 .liste_client {
   text-decoration: none;
-  color: grey;
+  color: black;
   font-size: 30px;
 }
 
@@ -97,15 +98,44 @@ h1 {
   transition: background-color 0.3s; /* Transition pour une animation fluide */
 }
 
-
-.button_return{
+.button_return {
   padding: 10px 20px;
-    font-size: 16px;
-    cursor: pointer;
-    border: none;
-    border-radius: 5px;
-    background-color: #3498db;
-    color: #fff;
-    text-decoration: none;
-    transition: background-color 0.3s;
-  }
+  font-size: 16px;
+  cursor: pointer;
+  border: none;
+  border-radius: 5px;
+  background-color: #3498db;
+  color: #fff;
+  text-decoration: none;
+  transition: background-color 0.3s;
+}
+
+.button_return:hover {
+  background-color: black;
+}
+
+a,
+button {
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  border: none;
+  border-radius: 5px;
+  background-color: #3498db;
+  color: #fff;
+  text-decoration: none;
+  transition: background-color 0.3s;
+}
+
+a:hover,
+button:hover {
+  background-color: black;
+}
+
+table {
+  margin: 50px 0px 0px 50px;
+}
+
+td {
+  margin: 20px;
+}

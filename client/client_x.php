@@ -15,8 +15,8 @@
         // Connexion à la BDD
         $infoger_bdd->Connexion();
     ?>
+    <a href="tableau_bord.html">&#11013; Retour au tableau de bord</a>
     <a href="lister_client.php">&#11013; Retour a la liste des clients</a>
-	<a href="tableau_bord.html">&#11013; Retour au tableau de bord</a>
     <h1>Informations Client</h1>
     <div class="informations">
         <form action="modifier_client.php">
@@ -51,19 +51,19 @@
                     for ($i=0;$i<count($info);$i++)
                     {
                         echo "<TR>";
-                        echo '<TD>'.'<INPUT TYPE="HIDDEN" NAME="nom_entreprise" value="'.$info[$i]['nom_entreprise'].'">'.$info[$i]['nom_entreprise'].'</TD>';
+                        echo '<TD>NOM DE L\'ENTREPRISE : '.'<INPUT TYPE="HIDDEN" NAME="nom_entreprise" value="'.$info[$i]['nom_entreprise'].'">'.$info[$i]['nom_entreprise'].'</TD>';
                         echo "</TR>";
                         echo "<TR>";
-                        echo '<TD>'.'<INPUT TYPE="HIDDEN" NAME="adresse_entreprise" value="'.$info[$i]['adresse_entreprise'].'">'.$info[$i]['adresse_entreprise'].'</TD>';
+                        echo '<TD>ADRESSE DE L\'ENTREPRISE : '.'<INPUT TYPE="HIDDEN" NAME="adresse_entreprise" value="'.$info[$i]['adresse_entreprise'].'">'.$info[$i]['adresse_entreprise'].'</TD>';
                         echo "</TR>";
                         echo "<TR>";
-                        echo '<TD>'.'<INPUT TYPE="HIDDEN" NAME="nom_referent" value="'.$info[$i]['nom_referent'].'">'.$info[$i]['nom_referent'].'</INPUT>'.'</TD>';
+                        echo '<TD>NOM DU RÉFÉRENT : '.'<INPUT TYPE="HIDDEN" NAME="nom_referent" value="'.$info[$i]['nom_referent'].'">'.$info[$i]['nom_referent'].'</INPUT>'.'</TD>';
                         echo "</TR>";
                         echo "<TR>";
-                        echo '<TD>'.'<INPUT TYPE="HIDDEN" NAME="mail_referent" value="'.$info[$i]['mail_referent'].'">'.$info[$i]['mail_referent'].'</TD>';
+                        echo '<TD>E-MAIL DU RÉFÉRENT : '.'<INPUT TYPE="HIDDEN" NAME="mail_referent" value="'.$info[$i]['mail_referent'].'">'.$info[$i]['mail_referent'].'</TD>';
                         echo "</TR>";
                         echo "<TR>";
-                        echo '<TD>'.'<INPUT TYPE="HIDDEN" NAME="tel_referent" value="'.$info[$i]['tel_referent'].'">'.$info[$i]['tel_referent'].'</TD>';
+                        echo '<TD>TÉLÉPHONE DU RÉFÉRENT : '.'<INPUT TYPE="HIDDEN" NAME="tel_referent" value="'.$info[$i]['tel_referent'].'">'.$info[$i]['tel_referent'].'</TD>';
                         echo "</TR>";
                         echo "<TR>";
                         echo '<TD>'.'<INPUT TYPE="HIDDEN" NAME="num_client" value="'.$info[$i]['Id_client'].'">'.'</TD>';

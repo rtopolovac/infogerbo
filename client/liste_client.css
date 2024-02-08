@@ -5,6 +5,7 @@
 html {
   padding: 0;
   margin: 0;
+  background: linear-gradient(#fff, #9198e5);
 }
 
 body {
@@ -31,8 +32,8 @@ button {
 }
 
 button:hover {
-  background-color: white;
   cursor: pointer;
+  background-color: black;
 }
 
 button a {
@@ -40,12 +41,8 @@ button a {
   color: white;
 }
 
-button a:hover {
-  color: black;
-}
-
 .liste_client {
-  margin: 10px 0px 0px 150px;
+  margin: 10px 0px 0px 230px;
 }
 
 .liste_client h1 {
@@ -92,7 +89,8 @@ tr {
 td {
   text-decoration: none;
   color: black;
-  padding: 20px 30px 20px 0px;;
+  border-top: 1px solid #151922;
+  padding: 20px 30px 20px 0px;
 }
 
 td a {
@@ -107,14 +105,12 @@ td a {
   transition: background-color 0.3s;
 }
 
-
-td a:hover{
-  color:black;
-  background-color: white;
+td a:hover {
+  background-color: black;
 }
 
-.button_return{
-padding: 10px 20px;
+.button_return {
+  padding: 10px 20px;
   font-size: 16px;
   cursor: pointer;
   border: none;
@@ -123,4 +119,8 @@ padding: 10px 20px;
   color: #fff;
   text-decoration: none;
   transition: background-color 0.3s;
+}
+
+.button_return:hover {
+  background-color: black;
 }

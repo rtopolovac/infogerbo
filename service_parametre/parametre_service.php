@@ -19,8 +19,8 @@
 		$nom_service = htmlspecialchars($_GET["nom_service"]);
 
 	?>
-	<a class="button_return" href="../client/lister_client.php">&#11013; Retour a la liste des clients</a>
 	<a class="button_return" href="../client/tableau_bord.html">&#11013; Retour au tableau de bord</a>
+	<?php echo '<TD>'.'<A class=button_return href="../service/service_client.php?num_client='.$num_client.'&nom_entreprise='.$nom_entreprise.'">'.'&#11013; Retour au service'.'</A>'.'</TD>'; ?>
 	<?php echo "<H1>Paramètre du service ".$nom_service." du client ".$nom_entreprise."</H1>";?>
     <div class="list">
         <div class="list_service">

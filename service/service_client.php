@@ -17,8 +17,8 @@
 		$num_client = htmlspecialchars($_GET["num_client"]);
 		$nom_entreprise = htmlspecialchars($_GET["nom_entreprise"]);
 	?>
-    <a class="button_return" href="../client/lister_client.php">&#11013; Retour a la liste des clients</a>
 	<a class="button_return" href="../client/tableau_bord.html">&#11013; Retour au tableau de bord</a>
+    <a class="button_return" href="../client/lister_client.php">&#11013; Retour a la liste des clients</a>
     <h1>Liste des services du client <?php echo $nom_entreprise?></h1>
 	<div class="flex_list">
         <div class="liste_client">
@@ -41,8 +41,9 @@
 							echo "<TR>";
 							echo '<TD>'.$tabService[$i]['nom_service'].'</TD>';
                             echo '<TD><DIV CLASS="maDiv"></DIV></TD>';
+							echo 'var tabStatue = ' . json_encode($tabStatus[$i]) . ';';
 							echo '<TD><BUTTON CLASS="monBouton" ONCLICK="changerTexte('.$i.')">Cliquer</BUTTON></TD>';
-							echo '<TD><A HREF="../service_parametre/parametre_service.php?num_client='.$num_client.'&num_service='.$tabService[$i]['n_service'].'&nom_entreprise='.$nom_entreprise.'&nom_service='.$tabService[$i]['nom_service'].'"><IMG SRC="paramètre.png" alt=""></A></TD>';
+							echo '<TD><A HREF="../service_parametre/parametre_service.php?num_client='.$num_client.'&num_service='.$tabService[$i]['n_service'].'&nom_entreprise='.$nom_entreprise.'&nom_service='.$tabService[$i]['nom_service'].'">Paramètres</A></TD>';
 							echo "</TR>";
 						}
 						echo "</TABLE>";
@@ -73,26 +74,32 @@
 
 	// Fonction pour changer le texte du bouton
 function changerTexte(indice) {
+
     var boutons = document.getElementsByClassName('monBouton');
     var maDivs = document.querySelectorAll('.maDiv');
+	window.alert(tabStatue);
 
     // Parcourir tous les boutons
         var bouton = boutons[indice];
         var maDiv = maDivs[indice];
 
-        // Vérifier le texte actuel du bouton
-        var texteActuel = bouton.innerText;
+		//Vérifier le texte actuel du bouton
+		var texteActuel = tabStatue[indice];
 
         // Changer le texte en fonction de l'état actuel
-        if (texteActuel === 'Désactiver') {
-            bouton.innerText = 'Activer';
+        if (texteActuel == 'Active') {
+            bouton.innerText = 'Active';
             maDiv.style.backgroundColor = 'green';
-        } else {
-            bouton.innerText = 'Désactiver';
+        } else if (tabStatue == 'Inactive') {
+            bouton.innerText = 'Inactive';
             maDiv.style.backgroundColor = 'red';
         }
-}
+		else if (tabStatue == 'Non disponible') {
+            bouton.innerText = 'Non disponible';
+            maDiv.style.backgroundColor = 'grey';
+        }
 
+}
 	</script>
 </body>
 </html>

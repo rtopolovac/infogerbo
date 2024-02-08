@@ -5,6 +5,11 @@
   margin: 0;
 }
 
+body {
+  background: linear-gradient(#fff, #9198e5);
+  height: 100vh;
+}
+
 h1 {
   text-align: center;
   font-size: 40px;
@@ -49,14 +54,52 @@ input {
   list-style-type: none;
 }
 
-.button_return{
+.button_return {
   padding: 10px 20px;
-    font-size: 16px;
-    cursor: pointer;
-    border: none;
-    border-radius: 5px;
-    background-color: #3498db;
-    color: #fff;
-    text-decoration: none;
-    transition: background-color 0.3s;
-  }
+  font-size: 16px;
+  cursor: pointer;
+  border: none;
+  border-radius: 5px;
+  background-color: #3498db;
+  color: #fff;
+  text-decoration: none;
+  transition: background-color 0.3s;
+}
+
+.button_return:hover {
+  background-color: black;
+}
+
+form {
+  margin: 50px 0px 0px 500px;
+}
+
+.list,
+.list_service,
+table,
+tr {
+  margin: 20px 20px 0px 20px;
+}
+
+input[type="submit"] {
+  padding: 10px 20px;
+  font-size: 25px;
+  margin-left: 15px;
+  width: 520px;
+  cursor: pointer;
+  border: none;
+  border-radius: 5px;
+  background-color: #3498db;
+  color: #fff;
+  text-decoration: none;
+  transition: background-color 0.3s;
+}
+
+input[type="submit"]:hover {
+  background-color: black;
+}
+
+input[type="text"] {
+  border-radius: 5px;
+  border: 1px solid black;
+}
