@@ -34,20 +34,20 @@
 						echo "</TR>";
 
 						$tabStatus = $infoger_bdd->SQL_lister_status($num_client);
-						
 						// Boucle d'affichage du tableau des clients	
 						for ($i=0;$i<count($tabService);$i++)
 						{
 							echo "<TR>";
+							echo json_encode($tabStatus[$i]['nom']);
 							echo '<TD>'.$tabService[$i]['nom_service'].'</TD>';
                             echo '<TD><DIV CLASS="maDiv"></DIV></TD>';
-							echo 'var tabStatue = ' . json_encode($tabStatus[$i]) . ';';
-							echo '<TD><BUTTON CLASS="monBouton" ONCLICK="changerTexte('.$i.')">Cliquer</BUTTON></TD>';
+							echo '<TD><BUTTON CLASS="monBouton" ONCLICK="changerTexte('.$i.')">Cliquez</BUTTON></TD>';
 							echo '<TD><A HREF="../service_parametre/parametre_service.php?num_client='.$num_client.'&num_service='.$tabService[$i]['n_service'].'&nom_entreprise='.$nom_entreprise.'&nom_service='.$tabService[$i]['nom_service'].'">Paramètres</A></TD>';
 							echo "</TR>";
 						}
 						echo "</TABLE>";
 					}
+
 
 				}
 			?>
@@ -55,50 +55,27 @@
 		</div>
 	<script> 
 	// Fonction pour changer le texte du bouton
-	// function changerTexte() {
-	// 	var bouton = document.getElementsByClassName('monBouton');
-	// 	var maDiv = document.querySelector('.maDiv');
+	function changerTexte(indice) {
 
-	// 	// Vérifier le texte actuel du bouton
-	// 	var texteActuel = bouton.innerText;
-
-	// 	// Changer le texte en fonction de l'état actuel
-	// 	if (texteActuel === 'Désactiver') {
-	// 	bouton.innerText = 'Activer';
-	// 	maDiv.style.backgroundColor = 'green';
-	// 	} else {
-	// 	bouton.innerText = 'Désactiver';
-	// 	maDiv.style.backgroundColor = 'red';
-	// 	}
-	// }
-
-	// Fonction pour changer le texte du bouton
-function changerTexte(indice) {
-
-    var boutons = document.getElementsByClassName('monBouton');
-    var maDivs = document.querySelectorAll('.maDiv');
-	window.alert(tabStatue);
-
-    // Parcourir tous les boutons
-        var bouton = boutons[indice];
-        var maDiv = maDivs[indice];
-
-		//Vérifier le texte actuel du bouton
-		var texteActuel = tabStatue[indice];
-
-        // Changer le texte en fonction de l'état actuel
-        if (texteActuel == 'Active') {
-            bouton.innerText = 'Active';
-            maDiv.style.backgroundColor = 'green';
-        } else if (tabStatue == 'Inactive') {
-            bouton.innerText = 'Inactive';
-            maDiv.style.backgroundColor = 'red';
-        }
-		else if (tabStatue == 'Non disponible') {
-            bouton.innerText = 'Non disponible';
-            maDiv.style.backgroundColor = 'grey';
-        }
-
+var boutons = document.getElementsByClassName('monBouton');
+var maDivs = document.querySelectorAll('.maDiv');
+// Parcourir tous les boutons
+	var bouton = boutons[indice];
+	var maDiv = maDivs[indice];
+	// Vérifier le texte actuel du bouton
+	var texteActuel = bouton.innerText;
+	// Changer le texte en fonction de l'état actuel
+	if ('<?php $tabStatus[0]['nom']?>' === 'Active') {
+		bouton.innerText = '<?php $tabStatus[0]['nom']?>';
+		maDiv.style.backgroundColor = 'green';
+	} else if ('<?php $tabStatus[1]['nom']?>' == 'Inactive'){
+		bouton.innerText = '<?php $tabStatus[1]['nom']?>';
+		maDiv.style.backgroundColor = 'red';
+	}
+	else if('<?php $tabStatus[2]['nom']?>' === 'Non disponible'){
+		bouton.innerText = '<?php $tabStatus[2]['nom']?>';
+		maDiv.style.backgroundColor = 'grey';
+	}
 }
 	</script>
 </body>
