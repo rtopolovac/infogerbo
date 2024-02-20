@@ -7,13 +7,15 @@
   </head>
    <body>
      
-	<?php						
+	<?php
+	// Inclure le fichier bdd_infoger.php pour pourvoir utiliser les méthodes de ce fichier					
 	require 'bdd_manager.php';	
 	
 
 	// Connexion à la BDD
 	$infoger = new BDDManager();
 
+	//Test pour la connexion a la BDD
 	$infoger->ConnexionBDD("localhost", "infoger_user1", "123456+azerty", "infoger");
 	
 	if ($infoger->isConnected()) 

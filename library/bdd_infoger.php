@@ -6,22 +6,23 @@ require 'bdd_manager.php';
 class BDD_infoger extends BDDManager{
     public function Connexion()
     {
+        //Utilisation de parent:: car BDD_infoger est hérité des méthodes BDDManager (son père)
         parent::ConnexionBDD("localhost", "infoger_user1", "123456+azerty", "infoger");
     }
     
-    //Lister les clients//
+    //Méthode pour Lister les clients
     public function SQL_liste_client()
     {
         return parent::executerRequete("SELECT Id_client, nom_entreprise, adresse_entreprise, nom_referent FROM client;");
     }
     
-    //Lister les infos du client//
+    // Méthode pour Lister les infos du client//
     public function SQL_info_client($num_client)
     {
         return parent::executerRequete("SELECT Id_client, nom_entreprise, adresse_entreprise, nom_referent, mail_referent, tel_referent FROM client WHERE Id_client =".$num_client);
     }
     
-    //Ajouter un client// 
+    // Méthode pour Ajouter un client// 
     public function SQL_ajouter_client($nom_referent, $mail_referent, $tel_referent,  $nom_entreprise, $adresse_entreprise)
     {
         $tab = array(
@@ -30,12 +31,12 @@ class BDD_infoger extends BDDManager{
             'tel_referent' => $tel_referent,
             'nom_entreprise' => $nom_entreprise,
             'adresse_entreprise' => $adresse_entreprise
-            ); // array
+            ); // tableau de donnée
 
         parent::insererDonnees("client",$tab);
     }
     
-    //Ajouter des services à un client//
+    // Méthode pour Ajouter des services à un client//
     public function SQL_ajouter_service_client($clientId, $serviceId)
     {
         try {
@@ -48,22 +49,13 @@ echo "Erreur ajout";
     }
 
 
-    // Lister les clients qui ont le même service//
+    // Méthode pour Lister les clients qui ont le même service//
     public function SQL_lister_service_client($Id_client)
     {
-//         try {
-//             $requete = $this->connexion->prepare("SELECT c.* FROM clients c INNER JOIN services_clients sc ON c.id = sc.client_id WHERE sc.service_id = ?");
-//             $requete->execute([$serviceId]);
-//             $clients = $requete->fetchAll(PDO::FETCH_ASSOC);
-//             return $clients;
-//         } catch (PDOException $e) {
-// echo "Erreur lors de la récupération des clients : ";
-//         }
     return parent::executerRequete("SELECT c.* FROM client AS c INNER JOIN service AS s ON c.Id_client = s.Id_service");
-    //SELECT c.*, s.nom_service FROM client c INNER JOIN service s ON c.Id_client = s.Id_service//
     }
 
-    //Lister les paramètres du service//
+    // Méthode pour Lister les paramètres du service//
     public function SQL_lister_parametres_service_client($clientId, $Id_service)
     {
         try {
@@ -78,7 +70,6 @@ echo "Erreur lors de la récupération des paramètres : ";
 
 
     // Méthode pour modifier les paramètres d'un service pour un client
-
     public function SQL_modifier_parametres_service_client($clientId, $serviceId, $nouveauxParametres)
     {
         try {
@@ -90,11 +81,30 @@ echo "Erreur lors de la récupération des paramètres : ";
         }
     }
 
+    // Méthode pour faire passer l'id du status de 1 à 2 ou de 2 à 1 
+    public function SQL_switch_status_service_client($Id_client, $Id_service, $id_nom_status)
+    {
+        if ($id_nom_status == 1){
+            $id_nom_status = 2;
+        }
+        else{
+            $id_nom_status = 1;
+        }
+        
+        $tab = array(
+            'Id_nom_status' => $id_nom_status
+            );// tableau
+
+        
+        parent::modifierDonnees("status"," Id_client=".$Id_client." AND Id_service = ".$Id_service, $tab);
+    }
+
+    // Méthode pour modifier les paramètres des services
     public function SQL_modifier_parametre_service($Id_parametre, $valeur_parametre)
     {
         $tab = array(
             'valeur_parametre' => $valeur_parametre
-            ); // array
+            ); // tableau
         
         parent::modifierDonnees("parametre","Id_parametre = ".$Id_parametre, $tab);
     }
@@ -107,15 +117,17 @@ echo "Erreur lors de la récupération des paramètres : ";
     return parent::executerRequete("SELECT nom_service, service.Id_service AS n_service, disponible FROM service JOIN status ON service.Id_service = status.Id_service WHERE Id_client=".$num_client.";");
 }
 
-public function SQL_lister_parametres($num_client, $num_service)
-{
-return parent::executerRequete("SELECT nom, valeur_parametre, Id_parametre FROM parametre JOIN nom_parametre ON parametre.Id_nom_parametre = nom_parametre.Id_nom_parametre WHERE Id_client=".$num_client." and Id_service=".$num_service.";");
-}
+    //Méthode pour lister les paramètres
+    public function SQL_lister_parametres($num_client, $num_service)
+    {
+    return parent::executerRequete("SELECT nom, valeur_parametre, Id_parametre FROM parametre JOIN nom_parametre ON parametre.Id_nom_parametre = nom_parametre.Id_nom_parametre WHERE Id_client=".$num_client." and Id_service=".$num_service.";");
+    }
 
-public function SQL_lister_status($num_client)
-{
-return parent::executerRequete("SELECT nom, nom_status.Id_nom_status AS n_status FROM nom_status JOIN status ON nom_status.Id_nom_status = status.Id_nom_status WHERE Id_client=".$num_client.";");
-}
+    //Méthode pour lister les status des services du clients
+    public function SQL_lister_status($num_client)
+    {
+    return parent::executerRequete("SELECT nom, nom_status.Id_nom_status AS n_status FROM nom_status JOIN status ON nom_status.Id_nom_status = status.Id_nom_status WHERE Id_client=".$num_client.";");
+    }
 
 
 
@@ -129,7 +141,7 @@ return parent::executerRequete("SELECT nom, nom_status.Id_nom_status AS n_status
             'nom_referent' => $nom_referent,
             'mail_referent' => $mail_referent,
             'tel_referent' => $tel_referent
-            ); // array
+            ); // tableau
 
         parent::modifierDonnees("client","Id_client=".$Id_client, $tab);
     }

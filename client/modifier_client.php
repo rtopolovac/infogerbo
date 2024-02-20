@@ -7,7 +7,8 @@
     <title>Modification</title>
 </head>
 <body>
-    <?php 
+    <?php
+    // Récupération des variables 
       $num_client = htmlspecialchars($_GET["num_client"]);
       $nom_referent = htmlspecialchars($_GET["nom_referent"]);
       $mail_referent = htmlspecialchars($_GET["mail_referent"]);
@@ -20,6 +21,8 @@
     <a class="button_return" href="lister_client.php">&#11013; Retour a la liste des clients</a>
 	  <a class="button_return" href="tableau_bord.html">&#11013; Retour au tableau de bord</a>
     <h1>Modification</h1>
+
+    <!-- Formulaire d'informations de clients que l'on peut modifier-->
     <form method="get" action="client_x.php">
         <label for="nom_referent"></label>
         <input placeholder="Nom du référent"  value="<?php echo $nom_referent; ?>" type="text" name="nom_referent">
@@ -40,16 +43,5 @@
         <input type="hidden" value='<?php echo $num_client; ?>' name='num_client'>
         <input type="submit" value="Enregistrer">
     </form>
-
-    <!-- <div class="heighter"></div>
-    <div class="pop-up" id="pop-up">
-      <div class="pop-up-back"></div>
-      <div class="pop-up-contenu">
-        Êtes vous sur de vouloir confirmer cette ajout <br />
-        <button><a href="lister_client.php">Oui</a></button>
-        <button><a href="nouveau_client.html">Non</a></button>
-      </div>
-    </div>
-    <script src="pop-up.js"></script> -->
 </body>
 </html>

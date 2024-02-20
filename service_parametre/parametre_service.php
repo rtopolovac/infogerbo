@@ -8,11 +8,14 @@
 </head>
 <body>
 <?php						
+		// Inclure le fichier bdd_infoger.php pour pourvoir utiliser les méthodes de ce fichier
 		require '../library/bdd_infoger.php';
 		$infoger_bdd = new BDD_infoger();
 					
 		// Connexion à la BDD
 		$infoger_bdd->Connexion();
+
+		//Récupération des id dans des variables 
 		$nom_entreprise = htmlspecialchars($_GET["nom_entreprise"]);
 		$num_client = htmlspecialchars($_GET["num_client"]);
 		$num_service = htmlspecialchars($_GET["num_service"]);
@@ -27,7 +30,8 @@
 			<form action="modifier_parametre.php" method="get">
 				<?php
 					if ($infoger_bdd->isConnected()){
-						// Requêtes SQL
+
+						// Requêtes SQL pour lister les paramèetres du service du client
 						$tab_parametre = $infoger_bdd->SQL_lister_parametres($num_client, $num_service);
 
 						if (count($tab_parametre) > 0)
@@ -49,6 +53,8 @@
 						}
 					}
 				?>
+
+				<!-- Input cacher pour pouvoir les renvoyer dans une autre page -->
 				<input type="hidden" value='<?php echo $num_client?>' name='num_client'>
 				<input type="hidden" value='<?php echo $num_service?>' name='num_service'>
 				<input type="hidden" value='<?php echo $nom_entreprise?>' name='nom_entreprise'>

@@ -6,7 +6,8 @@
 	<link rel="stylesheet" href="liste_client.css">
 </head>
    <body>
-   <?php						
+   <?php
+	     // Inclure le fichier bdd_infoger.php pour pourvoir utiliser les méthodes de ce fichier									
 		require '../library/bdd_infoger.php';
 		$infoger_bdd = new BDD_infoger();
 					
@@ -20,7 +21,7 @@
         <div class="liste_client">
 				<?php
 				if ($infoger_bdd->isConnected()){
-					// Requêtes SQL
+					// Requêtes SQL pour lister les clients
 					$tabClient = $infoger_bdd->SQL_liste_client();
 
 					if (count($tabClient) > 0)

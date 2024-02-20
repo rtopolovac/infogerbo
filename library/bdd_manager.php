@@ -4,6 +4,7 @@ class BDDManager {
     private $conn;
     private $connected = false;
 
+    //Création d'une méthode pour se connecter a la BDD 
     public function ConnexionBDD($host, $username, $password, $database) {
         try {
             $this->conn = new PDO("mysql:host=$host;dbname=$database", $username, $password);
@@ -15,11 +16,13 @@ class BDDManager {
         }
     }
 
+    // Création d'une méthode pour connected passe a true
     public function isConnected()
     {
         return $this->connected;
     }
 
+    //Méthode pour pouvoir exécuter une requête
     public function executerRequete($sql) {
             try {
                 $result = $this->conn->query($sql);
@@ -29,6 +32,7 @@ class BDDManager {
             }
     }
 
+    //Méthode pour pouvoir faire de l'insertion de données dans une BDD
     public function insererDonnees($table, $donnees) {
         // Construire la requête d'insertion
         $colonnes = implode(", ", array_keys($donnees));
@@ -43,6 +47,7 @@ class BDDManager {
         $prepa->execute(array_values($donnees));
     }
 
+    //Méthode pour pouvoir exécuter modifier des données dans une BDD
     public function modifierDonnees($table, $condition, $donnees) {
         // Construire la requête d'insertion
         $sql = "UPDATE $table SET ";

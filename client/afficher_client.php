@@ -18,7 +18,7 @@
 		// Connexion à la BDD
 		$pdo=new BDDManager("localhost", "infoger_user", "123456+azerty", "infoger");	
 		if ($pdo->isConnected()){
-			// Requêtes SQL 
+			// Requêtes SQL pour avoir la certains élément dans différente table
 			$tabClient = SelectBDD($pdo, "SELECT nom_entreprise, adresse_entreprise, nom_referent FROM client WHERE Id_client =".$Id_client);
 			$tabCat = SelectBDD($pdo, "SELECT Id_categorie, nom_categorie FROM categorie");
 				

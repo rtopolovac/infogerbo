@@ -8,6 +8,7 @@
 </head>
 <body>
     <?php 
+        // Inclure le fichier bdd_infoger.php pour pourvoir utiliser les méthodes de ce fichier
         require '../library/bdd_infoger.php';
 
         $infoger_bdd = new BDD_infoger();
@@ -21,26 +22,26 @@
     <div class="informations">
         <form action="modifier_client.php">
             <?php
+            //Conditions (Si on arrive a se connecter a la BDD)
             if ($infoger_bdd->isConnected()){
                 
-                // Requêtes SQL
-                // $tabClient = $infoger_bdd->SQL_modifier_client("1", "nom_entreprise1", "adresse_entreprise1", "nom_referent1", "mail_referent1", "tel_referent1");
-
+                // Récupération de du numéro client + création d'une variable update pour détecter si il a un update
                 $num_client = htmlspecialchars($_GET["num_client"]);
                 $update = false;
                 if (isset($_GET["update"])) $update = htmlspecialchars($_GET["update"]);
 
                 if ($update)
                 {
+                    // Récuperation de varible 
                     $nom_referent = htmlspecialchars($_GET["nom_referent"]);
                     $mail_referent = htmlspecialchars($_GET["mail_referent"]);
                     $tel_referent = htmlspecialchars($_GET["tel_referent"]);
                     $nom_entreprise = htmlspecialchars($_GET["nom_entreprise"]);
                     $adresse_entreprise = htmlspecialchars($_GET["adresse_entreprise"]);
-
+                    // Requêtes SQL pour modifier les informations du client
                     $infoger_bdd->SQL_modifier_client($num_client, $nom_entreprise, $adresse_entreprise, $nom_referent, $mail_referent, $tel_referent);
                 }
-
+                // Requêtes SQL pour avoir les informations du client 
                 $info = $infoger_bdd->SQL_info_client($num_client);
 
                 if (count($info) > 0)

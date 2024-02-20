@@ -7,13 +7,15 @@
     <title>Liste des services du client </title>
 </head>
 <body>
-	<?php						
+	<?php		
+
+		// Inclure le fichier bdd_infoger.php pour pourvoir utiliser les méthodes de ce fichier
 		require '../library/bdd_infoger.php';
 		$infoger_bdd = new BDD_infoger();
 					
 		// Connexion à la BDD
 		$infoger_bdd->Connexion();
-
+		//Récupération des variables nécessaires
 		$num_client = htmlspecialchars($_GET["num_client"]);
 		$nom_entreprise = htmlspecialchars($_GET["nom_entreprise"]);
 	?>
@@ -24,7 +26,7 @@
         <div class="liste_client">
             <?php
 				if ($infoger_bdd->isConnected()){
-					// Requêtes SQL
+					// Requêtes SQL pour lister les services du client A MODIFIER LISTER TOUT LES SERVICES ET NON PAS CEUX DU CLIENT
 					$tabService = $infoger_bdd->SQL_lister_services($num_client);
 
 					if (count($tabService) > 0)
@@ -33,17 +35,18 @@
 						echo "<TR><TD>Nom service</TD><TD>Etat</TD>";
 						echo "</TR>";
 
+						//Requête SQL pour lister les status des services du client 
 						$tabStatus = $infoger_bdd->SQL_lister_status($num_client);
-						// Boucle d'affichage du tableau des clients	
+
+						// Boucle d'affichage du tableau des services	
 						for ($i=0;$i<count($tabService);$i++)
 						{
 							echo "<TR>";
-							echo json_encode($tabStatus[$i]['nom']);
 							echo '<TD>'.$tabService[$i]['nom_service'].'</TD>';
-                            echo '<TD><DIV CLASS="maDiv"></DIV></TD>';
-							echo '<TD><BUTTON CLASS="monBouton" ONCLICK="changerTexte('.$i.')">Cliquez</BUTTON></TD>';
+                            echo '<TD class= "'.($tabStatus[$i]['nom'] == 'Active' ? 'maDivGreen' : 'maDivRed').'"></TD>';
+							echo '<TD><A HREF="changer_status_service.php?num_client='.$num_client.'&num_service='.$tabService[$i]['n_service'].'&id_nom_status='.$tabStatus[$i]['n_status'].'&nom_entreprise='.$nom_entreprise.'" CLASS="monBouton"">Activer/Désactiver</BUTTON></TD>';
 							echo '<TD><A HREF="../service_parametre/parametre_service.php?num_client='.$num_client.'&num_service='.$tabService[$i]['n_service'].'&nom_entreprise='.$nom_entreprise.'&nom_service='.$tabService[$i]['nom_service'].'">Paramètres</A></TD>';
-							echo "</TR>";
+						echo "</TR>";
 						}
 						echo "</TABLE>";
 					}
@@ -53,30 +56,5 @@
 			?>
         	</div>
 		</div>
-	<script> 
-	// Fonction pour changer le texte du bouton
-	function changerTexte(indice) {
-
-var boutons = document.getElementsByClassName('monBouton');
-var maDivs = document.querySelectorAll('.maDiv');
-// Parcourir tous les boutons
-	var bouton = boutons[indice];
-	var maDiv = maDivs[indice];
-	// Vérifier le texte actuel du bouton
-	var texteActuel = bouton.innerText;
-	// Changer le texte en fonction de l'état actuel
-	if ('<?php $tabStatus[0]['nom']?>' === 'Active') {
-		bouton.innerText = '<?php $tabStatus[0]['nom']?>';
-		maDiv.style.backgroundColor = 'green';
-	} else if ('<?php $tabStatus[1]['nom']?>' == 'Inactive'){
-		bouton.innerText = '<?php $tabStatus[1]['nom']?>';
-		maDiv.style.backgroundColor = 'red';
-	}
-	else if('<?php $tabStatus[2]['nom']?>' === 'Non disponible'){
-		bouton.innerText = '<?php $tabStatus[2]['nom']?>';
-		maDiv.style.backgroundColor = 'grey';
-	}
-}
-	</script>
 </body>
 </html>
