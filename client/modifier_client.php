@@ -18,8 +18,8 @@
     
     ?>
 
+    <a class="button_return" href="tableau_bord.html">&#11013; Retour au tableau de bord</a>
     <a class="button_return" href="lister_client.php">&#11013; Retour a la liste des clients</a>
-	  <a class="button_return" href="tableau_bord.html">&#11013; Retour au tableau de bord</a>
     <h1>Modification</h1>
 
     <!-- Formulaire d'informations de clients que l'on peut modifier-->
