@@ -144,6 +144,16 @@ echo "Erreur lors de la récupération des paramètres : ";
         parent::insererDonnees("status",$tab);
     }
 
+	public function SQL_ajouter_parametre_virtualhost($Id_service, $Id_nom_parametre, $Id_client)
+    {
+        $tab = array(
+            'Id_service' => $Id_service,
+			'Id_nom_parametre' => $Id_nom_parametre,
+            'Id_client' => $Id_client,
+            ); // tableau de donnée
+
+        parent::insererDonnees("parametre",$tab);
+    }
 
 
     //Modification d'informations du client//

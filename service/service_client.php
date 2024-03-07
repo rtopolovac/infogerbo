@@ -36,33 +36,79 @@
 
 						//Requête SQL pour lister les status des services du client 
 						$tabStatus = $infoger_bdd->SQL_lister_status($num_client);
-
+						
+						if (count($tabStatus) == 0) $tabStatusVide = true; else $tabStatusVide = false;
 
 						// Boucle d'affichage du tableau des services	
 						for ($i=0;$i<count($tabService);$i++)
 						{
-							if (is_null($tabStatus)){
-								$tabStatus =  $infoger_bdd->SQL_switch_status_service_client($num_client, $tabService[$i]['n_service'], $tabStatus[$i]['n_status']);	
-							}
-							var_dump($tabStatus);
+							
 							echo "<TR>";
 							echo '<TD>'.$tabService[$i]['nom_service'].'</TD>';
                             echo '<TD class="';
-							if (isset($tabStatus[$i]['nom']) && $tabStatus[$i]['nom'] == 'Active' ) { 
-								// && $tabService[$i]['disponible'] == 'true'
-								echo 'maDivGreen';
-							} 
-							// elseif ($tabService[$i]['disponible'] == 'false'){
-							// 	echo 'maDivGrey';
-							// }
-							else {
-								echo 'maDivRed';
-								$tabStatus[$i]['n_status'] = 2;
+							
+							// Le service est indisponible
+							if ($tabService[$i]['disponible'] == 'false') 
+							{
+								echo 'maDivGrey';
+								echo '"></TD>';
+								echo "</TR>";
 							}
-							echo '"></TD>';
-							echo '<TD><A HREF="changer_status_service.php?num_client='.$num_client.'&num_service='.$tabService[$i]['n_service'].'&id_nom_status='.$tabStatus[$i]['n_status'].'&nom_entreprise='.$nom_entreprise.'" CLASS="monBouton"">Activer/Désactiver</BUTTON></TD>';
-							echo '<TD><A HREF="../service_parametre/parametre_service.php?num_client='.$num_client.'&num_service='.$tabService[$i]['n_service'].'&nom_entreprise='.$nom_entreprise.'&nom_service='.$tabService[$i]['nom_service'].'">Paramètres</A></TD>';
-						echo "</TR>";
+							else
+							{
+								// Il n'y a pas d'entrée pour le client dans la table status
+								if ($tabStatusVide)
+								{
+									echo 'maDivRed';
+									echo '"></TD>';
+									echo '<TD><A HREF="ajouter_status_service.php?num_client='.$num_client.'&num_service='.$tabService[$i]['n_service'].'&id_nom_status=1'.'&nom_entreprise='.$nom_entreprise.'" CLASS="monBouton"">Activer/Désactiver</BUTTON></TD>';
+echo "TAB VIDE";						
+									
+									echo "</TR>";
+								}
+								else
+								{
+									// Recherche du bonne enregistrement dans la table status
+									$compteur=-1;
+									for ($j=0; $j<count($tabStatus); $j++)
+									{
+										
+										if ($tabStatus[$j]['n_service'] == $tabService[$i]['n_service']) {$compteur = $j; break; }
+									}
+									
+									// Il n y a pas d'entrée pour ce service dans la table status
+									if ($compteur==-1)
+									{
+										echo 'maDivRed';
+										echo '"></TD>';
+										echo '<TD><A HREF="ajouter_status_service.php?num_client='.$num_client.'&num_service='.$tabService[$i]['n_service'].'&id_nom_status=1'.'&nom_entreprise='.$nom_entreprise.'" CLASS="monBouton"">Activer/Désactiver</BUTTON></TD>';
+echo "PAS D ENTREE";						
+										
+										echo "</TR>";
+									}
+									
+									// Il y a une entrée pour ce client dans la table status et le service est inactif
+									if ($compteur!=-1 && $tabStatus[$compteur]['n_status'] == '2' ) 
+									{
+										echo 'maDivRed';
+										echo '"></TD>';
+										echo '<TD><A HREF="changer_status_service.php?num_client='.$num_client.'&num_service='.$tabService[$i]['n_service'].'&id_nom_status='.$tabStatus[$compteur]['n_status'].'&nom_entreprise='.$nom_entreprise.'" CLASS="monBouton"">Activer/Désactiver</BUTTON></TD>';
+echo "INACTIF";						
+										echo "</TR>";
+									}
+									
+									// Il y a une entrée pour ce client dans la table status et le service est actif
+									if ($compteur!=-1 && $tabStatus[$compteur]['n_status'] == '1' ) 
+									{
+										echo 'maDivGreen';  
+										echo '"></TD>';
+										echo '<TD><A HREF="changer_status_service.php?num_client='.$num_client.'&num_service='.$tabService[$i]['n_service'].'&id_nom_status='.$tabStatus[$compteur]['n_status'].'&nom_entreprise='.$nom_entreprise.'" CLASS="monBouton"">Activer/Désactiver</BUTTON></TD>';
+										echo '<TD><A HREF="../service_parametre/parametre_service.php?num_client='.$num_client.'&num_service='.$tabService[$i]['n_service'].'&nom_entreprise='.$nom_entreprise.'&nom_service='.$tabService[$i]['nom_service'].'">Paramètres</A></TD>';
+										echo "</TR>";
+									}
+								}
+							}
+							
 						}
 						echo "</TABLE>";
 					}
