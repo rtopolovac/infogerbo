@@ -30,4 +30,4 @@
     header('Location: ../service/service_client.php?num_client='.$num_client.'&num_service='.$num_service.'&nom_entreprise='.$nom_entreprise.'&id_nom_status='.$id_nom_status.'');
     ?>
 </body>
-</html>
+</html>  
