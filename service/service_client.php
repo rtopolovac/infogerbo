@@ -28,7 +28,6 @@
 				if ($infoger_bdd->isConnected()){
 					// Requêtes SQL pour lister les services du client A MODIFIER LISTER TOUT LES SERVICES ET NON PAS CEUX DU CLIENT
 					$tabService = $infoger_bdd->SQL_lister_services();
-
 					if (count($tabService) > 0)
 					{
 						echo '<TABLE CELLSPACING="0" border="0">';
@@ -38,16 +37,27 @@
 						//Requête SQL pour lister les status des services du client 
 						$tabStatus = $infoger_bdd->SQL_lister_status($num_client);
 
+
 						// Boucle d'affichage du tableau des services	
 						for ($i=0;$i<count($tabService);$i++)
 						{
+							if (is_null($tabStatus)){
+								$tabStatus =  $infoger_bdd->SQL_switch_status_service_client($num_client, $tabService[$i]['n_service'], $tabStatus[$i]['n_status']);	
+							}
+							var_dump($tabStatus);
 							echo "<TR>";
 							echo '<TD>'.$tabService[$i]['nom_service'].'</TD>';
                             echo '<TD class="';
-							if (isset($tabStatus[$i]['nom']) && $tabStatus[$i]['nom'] == 'Active') {
+							if (isset($tabStatus[$i]['nom']) && $tabStatus[$i]['nom'] == 'Active' ) { 
+								// && $tabService[$i]['disponible'] == 'true'
 								echo 'maDivGreen';
-							} else {
+							} 
+							// elseif ($tabService[$i]['disponible'] == 'false'){
+							// 	echo 'maDivGrey';
+							// }
+							else {
 								echo 'maDivRed';
+								$tabStatus[$i]['n_status'] = 2;
 							}
 							echo '"></TD>';
 							echo '<TD><A HREF="changer_status_service.php?num_client='.$num_client.'&num_service='.$tabService[$i]['n_service'].'&id_nom_status='.$tabStatus[$i]['n_status'].'&nom_entreprise='.$nom_entreprise.'" CLASS="monBouton"">Activer/Désactiver</BUTTON></TD>';

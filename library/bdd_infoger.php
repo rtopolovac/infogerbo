@@ -84,12 +84,16 @@ echo "Erreur lors de la récupération des paramètres : ";
     // Méthode pour faire passer l'id du status de 1 à 2 ou de 2 à 1 
     public function SQL_switch_status_service_client($Id_client, $Id_service, $id_nom_status)
     {
+        if(is_null($id_nom_status)){
+            $id_nom_status = 1;
+        }
+        
         if ($id_nom_status == 1){
             $id_nom_status = 2;
         }
         else{
             $id_nom_status = 1;
-        }
+        }   
         
         $tab = array(
             'Id_nom_status' => $id_nom_status
@@ -126,7 +130,18 @@ echo "Erreur lors de la récupération des paramètres : ";
     //Méthode pour lister les status des services du clients
     public function SQL_lister_status($num_client)
     {
-    return parent::executerRequete("SELECT nom, nom_status.Id_nom_status AS n_status FROM nom_status JOIN status ON nom_status.Id_nom_status = status.Id_nom_status WHERE Id_client=".$num_client.";");
+    return parent::executerRequete("SELECT nom, status.Id_nom_status AS n_status , Id_service AS n_service FROM status JOIN nom_status ON status.Id_nom_status = nom_status.Id_nom_status WHERE Id_client=".$num_client.";");
+    }
+
+    public function SQL_ajouter_status($Id_nom_status,  $Id_service, $Id_client)
+    {
+        $tab = array(
+            'Id_nom_status' => $Id_nom_status,
+            'Id_service' => $Id_service,
+            'Id_client' => $Id_client,
+            ); // tableau de donnée
+
+        parent::insererDonnees("status",$tab);
     }
 
 

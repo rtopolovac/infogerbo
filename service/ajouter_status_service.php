@@ -24,10 +24,11 @@
     $nom_entreprise = htmlspecialchars($_GET["nom_entreprise"]);
 
     //Requête SQL pour changer l'id status du service du client
-    $infoger_bdd->SQL_switch_status_service_client($num_client, $num_service, $id_nom_status);
+    $infoger_bdd->SQL_ajouter_status($id_nom_status,  $num_service, $num_client)
+    SQL_switch_status_service_client($num_client, $num_service, $id_nom_status);
 
     //Redirection sur la page service_client
-    header('Location: ../service/service_client.php?num_client='.$num_client.'&num_service='.$num_service.'&nom_entreprise='.$nom_entreprise.'&id_nom_status='.$id_nom_status.'');
+    // header('Location: ../service/service_client.php?num_client='.$num_client.'&num_service='.$num_service.'&nom_entreprise='.$nom_entreprise.'&id_nom_status='.$id_nom_status.'');
     ?>
 </body>
 </html>
