@@ -9,16 +9,18 @@
      
 	<?php
 	// Inclure le fichier bdd_infoger.php pour pourvoir utiliser les méthodes de ce fichier					
-	require 'bdd_manager.php';	
+	require 'bdd_infoger.php';	
 	
 
 	// Connexion à la BDD
-	$infoger = new BDDManager();
+echo "REQUIRE OK ";				
+		$infoger_bdd = new BDD_infoger();
+echo "NEW OK ";					
+		// Connexion à la BDD
+		$infoger_bdd->Connexion();
+echo "AVANGT TEST CONNECT ";
 
-	//Test pour la connexion a la BDD
-	$infoger->ConnexionBDD("192.168.100.210", "dev_web", "123+aze", "infoger");
-	
-	if ($infoger->isConnected()) 
+	if ($infoger_bdd->isConnected()) 
 		echo "La connexion à la BBD à réuissi :)";
 	else
 		echo "\nLa connexion à la BBD à ECHOUE !!!";

@@ -7,10 +7,10 @@
 </head>
    <body>
    <?php
+
 	     // Inclure le fichier bdd_infoger.php pour pourvoir utiliser les méthodes de ce fichier									
-		require '../library/bdd_infoger.php';
-		$infoger_bdd = new BDD_infoger();
-					
+		require '../library/bdd_infoger.php';			
+		$infoger_bdd = new BDD_infoger();				
 		// Connexion à la BDD
 		$infoger_bdd->Connexion();
 	?>
