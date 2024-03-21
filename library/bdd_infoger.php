@@ -7,7 +7,7 @@ class BDD_infoger extends BDDManager{
     public function Connexion()
     {
         //Utilisation de parent:: car BDD_infoger est hérité des méthodes BDDManager (son père)
-        parent::ConnexionBDD("localhost", "infoger_user1", "123456+azerty", "infoger");
+        parent::ConnexionBDD("192.168.100.210", "dev_web", "123+aze", "infoger");
     }
     
     public function isConnected()
