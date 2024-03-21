@@ -42,7 +42,6 @@
 						// Boucle d'affichage du tableau des services	
 						for ($i=0;$i<count($tabService);$i++)
 						{
-							
 							echo "<TR>";
 							echo '<TD>'.$tabService[$i]['nom_service'].'</TD>';
                             echo '<TD class="';
