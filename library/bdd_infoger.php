@@ -36,18 +36,6 @@ class BDD_infoger extends BDDManager{
         parent::insererDonnees("client",$tab);
     }
     
-    // Méthode pour Ajouter des services à un client//
-    public function SQL_ajouter_service_client($clientId, $serviceId)
-    {
-        try {
-            $requete = $this->connexion->prepare("INSERT INTO services_clients (client_id, service_id) VALUES (?, ?)");
-            $requete->execute([$clientId, $serviceId]);
-echo "Service ajouté";
-        } catch (PDOException) {
-echo "Erreur ajout";
-        }
-    }
-
 
     // Méthode pour Lister les clients qui ont le même service//
     public function SQL_lister_service_client($Id_client)
@@ -55,34 +43,9 @@ echo "Erreur ajout";
     return parent::executerRequete("SELECT c.* FROM client AS c INNER JOIN service AS s ON c.Id_client = s.Id_service");
     }
 
-    // Méthode pour Lister les paramètres du service//
-    public function SQL_lister_parametres_service_client($clientId, $Id_service)
-    {
-        try {
-            $requete = $this->connexion->prepare("SELECT * FROM parametres_services WHERE client_id = ? AND service_id = ?");
-            $requete->execute([$clientId, $serviceId]);
-            $parametres = $requete->fetchAll(PDO::FETCH_ASSOC);
-            return $parametres;
-        } catch (PDOException $e) {
-echo "Erreur lors de la récupération des paramètres : ";
-        }
-    }
-
-
-    // Méthode pour modifier les paramètres d'un service pour un client
-    public function SQL_modifier_parametres_service_client($clientId, $serviceId, $nouveauxParametres)
-    {
-        try {
-            $requete = $this->connexion->prepare("UPDATE parametres_services_clients SET parametre1=?, parametre2=?, ... WHERE client_id=? AND service_id=?");
-            $requete->execute([...$nouveauxParametres, $clientId, $serviceId]);
-            echo "Paramètres modifiés avec succès.";
-        } catch (PDOException $e) {
-            echo "Erreur lors de la modification des paramètres : " . $e->getMessage();
-        }
-    }
 
     // Méthode pour faire passer l'id du status de 1 à 2 ou de 2 à 1 
-    public function SQL_switch_status_service_client($Id_client, $Id_service, $id_nom_status)
+    public function SQL_switch_status_service_client($Id_client, $Id_service, $id_nom_status, $id_parametre)
     {
         if(is_null($id_nom_status)){
             $id_nom_status = 1;
@@ -101,6 +64,24 @@ echo "Erreur lors de la récupération des paramètres : ";
 
         
         parent::modifierDonnees("status"," Id_client=".$Id_client." AND Id_service = ".$Id_service, $tab);
+        
+        if (empty($id_parametre) and is_null($id_parametre)){
+            $tab2 = array(
+                'Id_client' => $Id_client, 
+                'Id_service' => $Id_service,
+                'Id_nom_parametre'=> '1',
+                );// tableau
+
+            parent::insererDonnees("parametre",$tab2);
+            
+            $tab3 = array(
+                'Id_client' => $Id_client, 
+                'Id_service' => $Id_service,
+                'Id_nom_parametre'=> '2',
+                );// tableau
+
+            parent::insererDonnees("parametre",$tab2);
+        }
     }
 
     // Méthode pour modifier les paramètres des services
@@ -151,7 +132,7 @@ echo "Erreur lors de la récupération des paramètres : ";
 			'Id_nom_parametre' => $Id_nom_parametre,
             'Id_client' => $Id_client,
             ); // tableau de donnée
-
+ 
         parent::insererDonnees("parametre",$tab);
     }
 

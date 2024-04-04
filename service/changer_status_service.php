@@ -23,8 +23,18 @@
     $id_nom_status = htmlspecialchars($_GET["id_nom_status"]);
     $nom_entreprise = htmlspecialchars($_GET["nom_entreprise"]);
 
+    $tabParametre = $infoger_bdd-> SQL_lister_parametres($num_client, $num_service);
+    
+    foreach ($_GET as $cle => $valeur){
+        echo $cle.'=>'.$valeur.'<br>';
+    }
+
+    $test = $tabParametre[$num_client];
+
+   var_dump($test);
+
     //Requête SQL pour changer l'id status du service du client
-    $infoger_bdd->SQL_switch_status_service_client($num_client, $num_service, $id_nom_status);
+    $infoger_bdd->SQL_switch_status_service_client($num_client, $num_service, $id_nom_status, $test);
 
     //Redirection sur la page service_client
     header('Location: ../service/service_client.php?num_client='.$num_client.'&num_service='.$num_service.'&nom_entreprise='.$nom_entreprise.'&id_nom_status='.$id_nom_status.'');
