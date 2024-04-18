@@ -69,24 +69,6 @@ class BDD_infoger extends BDDManager{
   
           
         parent::modifierDonnees("status"," Id_client=".$Id_client." AND Id_service = ".$Id_service, $tab);
-
-      if (empty($id_parametre) && is_null($id_parametre)){
-        $tab2 = array(
-            'Id_client' => $Id_client, 
-            'Id_service' => $Id_service,
-            'Id_nom_parametre'=> '1',
-            );// tableau
-
-        parent::insererDonnees("parametre",$tab2);
-        
-        $tab3 = array(
-            'Id_client' => $Id_client, 
-            'Id_service' => $Id_service,
-            'Id_nom_parametre'=> '2',
-            );// tableau
-
-        parent::insererDonnees("parametre",$tab2);
-        }
     }
   
     // Méthode pour modifier les paramètres des services
