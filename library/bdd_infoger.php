@@ -4,10 +4,16 @@ require 'bdd_manager.php';
 
 
 class BDD_infoger extends BDDManager{
+    private $mode_production = false;
+
     public function Connexion()
     {
         //Utilisation de parent:: car BDD_infoger est hérité des méthodes BDDManager (son père)
-        parent::ConnexionBDD("localhost", "infoger_user1", "123456+azerty", "infoger");
+        if ($this->mode_production)
+            parent::ConnexionBDD("192.168.100.210", "dev_web", "123+aze", "infoger");
+        else
+            parent::ConnexionBDD("localhost", "infoger_user1", "123456+azerty", "infoger");
+        
     }
     
     public function isConnected()
